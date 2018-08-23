@@ -1,4 +1,4 @@
-package com.clews.yameokja;
+package com.clews.ameokja;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;
@@ -21,6 +21,6 @@ public class ExampleInstrumentedTest {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getTargetContext();
 
-        assertEquals("com.clews.yameokja", appContext.getPackageName());
+        assertEquals("com.clews.ameokja", appContext.getPackageName());
     }
 }

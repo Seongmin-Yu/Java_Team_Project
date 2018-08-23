@@ -1,4 +1,4 @@
-package com.clews.yameokja;
+package com.clews.ameokja;
 
 import org.junit.Test;
 
