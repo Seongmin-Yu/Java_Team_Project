@@ -2,6 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.clews.ameokja">
 
+    <uses-permission android:name="android.permission.INTERNET"/>
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
 
@@ -21,7 +22,7 @@
 
         <uses-library android:name="org.apache.http.legacy" android:required="false"/>
 
-        <activity android:name=".MainActivity">
+        <activity android:name=".NewMapsActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
