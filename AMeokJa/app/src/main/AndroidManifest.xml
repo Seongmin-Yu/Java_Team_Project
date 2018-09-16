@@ -2,6 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.clews.ameokja">
 
+    <uses-permission android:name="android.permission.INTERNET"/>
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
 
@@ -16,12 +17,12 @@
         android:theme="@style/AppTheme">
 
         <meta-data
-            android:name="com.google.android.geo.API_KEY"
-            android:value="AIzaSyDqwlLCIUfhgidBRELOpQTwm_TKfwM2RGw" />
+            android:name="com.kakao.sdk.AppKey"
+            android:value="bbc70593defebc949948303a45e2b7ea" />
 
         <uses-library android:name="org.apache.http.legacy" android:required="false"/>
 
-        <activity android:name=".MainActivity">
+        <activity android:name=".DaumMapsActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
