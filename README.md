@@ -13,3 +13,14 @@
   - Client (Android)
 - 2219 최민서
   - Client (Android)
+
+## 기술 스택
+
+- Android Studio
+- Webstorm
+- Node.js
+- Express.js
+- MongoDB
+- Mongoose.js
+- Java
+- Daum Map API
