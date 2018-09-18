@@ -1,6 +1,6 @@
 # Java_Team_Project
 
-##AMUGJA
+## AMUGJA
 
 - 2207 유성민
   - Back-end
