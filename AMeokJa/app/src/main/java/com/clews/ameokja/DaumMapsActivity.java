@@ -1,15 +1,23 @@
 package com.clews.ameokja;
 
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentActivity;
 import android.support.v7.app.AppCompatActivity;
+import android.text.Editable;
+import android.text.InputType;
+import android.text.TextWatcher;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
 import android.view.WindowManager;
+import android.view.inputmethod.EditorInfo;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -31,6 +39,7 @@ public class DaumMapsActivity extends FragmentActivity
     String API_KEY = "bbc70593defebc949948303a45e2b7ea";
     ImageView mButtonSearch;
     EditText mEditTextQuery;
+    ImageButton mButtonCurrent;
     private HashMap<Integer, Item> mTagItemMap = new HashMap<>();
 
     @Override
@@ -45,7 +54,12 @@ public class DaumMapsActivity extends FragmentActivity
         mapView.setCalloutBalloonAdapter(new CustomCalloutBalloonAdapter());
 
         mEditTextQuery = (EditText) findViewById(R.id.editText_home);
+        mEditTextQuery.setOnKeyListener(new EditMessageOnKeyListener());
         mButtonSearch = (ImageView) findViewById(R.id.search_button);
+        mButtonCurrent = findViewById(R.id.current_location_button);
+
+
+
 
 /*
         try {
@@ -76,6 +90,53 @@ public class DaumMapsActivity extends FragmentActivity
         }
 */
 
+/*
+        mEditTextQuery.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                    onSearchButton();
+            }
+        });*/
+/*
+
+        mEditTextQuery.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                switch (actionId) {
+                    case EditorInfo.IME_ACTION_SEARCH:
+                        onSearchButton();
+                        break;
+                        default:
+                            System.out.println("default");
+                }
+                return true;
+            }
+        });
+*/
+        mEditTextQuery.setOnKeyListener(new View.OnKeyListener() {
+            @Override
+            public boolean onKey(View v, int keyCode, KeyEvent event) {
+                if ((event.getAction() == KeyEvent.ACTION_DOWN) && (keyCode == KeyEvent.KEYCODE_ENTER)) {
+                    InputMethodManager imm = (InputMethodManager) getSystemService(Activity.INPUT_METHOD_SERVICE);
+                    imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
+
+                    onSearchButton();
+                    return true;
+                }
+
+                return false;
+            }
+        });
 
         mButtonSearch.setOnClickListener(new View.OnClickListener()
         {
@@ -115,6 +176,13 @@ public class DaumMapsActivity extends FragmentActivity
 
         });
 
+        mButtonCurrent.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mapView.setCurrentLocationTrackingMode(MapView.CurrentLocationTrackingMode.TrackingModeOnWithoutHeading);
+            }
+        });
+
     }
 
     public void onSearchButton() {
@@ -123,7 +191,7 @@ public class DaumMapsActivity extends FragmentActivity
             Toast.makeText(getBaseContext(), "검색어를 입력하세요.", Toast.LENGTH_SHORT).show();
             return;
         }
-        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
+//        mEditTextQuery.setInputType(InputType.TYPE_NULL);
         MapPoint.GeoCoordinate geoCoordinate = mapView.getMapCenterPoint().getMapPointGeoCoord();
         double latitude = geoCoordinate.latitude; // 위도
         double longitude = geoCoordinate.longitude; // 경도
@@ -195,11 +263,6 @@ public class DaumMapsActivity extends FragmentActivity
         if (poiItems.length > 0) {
             mapView.selectPOIItem(poiItems[0], false);
         }
-
-        System.out.println(itemList.get(0).place_name);
-
-        System.out.println(itemList.get(1).place_name);
-        System.out.println(itemList.get(2).place_name);
 
 
 
@@ -292,6 +355,22 @@ public class DaumMapsActivity extends FragmentActivity
             return null;
         }
 
+    }
+
+    class EditMessageOnKeyListener implements View.OnKeyListener {
+
+
+        @Override
+        public boolean onKey(View v, int keyCode, KeyEvent event) {
+
+
+            if (keyCode == KeyEvent.KEYCODE_ENTER) {
+                //onSearchButton();
+                return true;
+            }
+
+            return false;
+        }
     }
 }
 

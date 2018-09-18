@@ -34,6 +34,9 @@
             android:layout_height="match_parent"
             android:layout_marginLeft="20dp"
             android:layout_weight="1"
+            android:maxLines="1"
+            android:inputType="text"
+            android:imeOptions="actionSearch"
             android:background="@android:color/transparent"
             android:gravity="center_vertical"
             android:hint="Search in your city"
@@ -50,6 +53,19 @@
 
 
     </LinearLayout>
+
+    <ImageButton
+        android:id="@+id/current_location_button"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:src="@drawable/current_location_button2"
+        android:background="@drawable/button_currentlocation" android:scaleType="fitXY"
+        android:layout_marginRight="3dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="70dp"
+
+        />
 
 
 </RelativeLayout>
