@@ -53,4 +53,5 @@ dependencies {
     implementation files('libs/libDaumMapEngineApi.jar')
     implementation files('libs/jackson-core-asl-1.9.13.jar')
     implementation files('libs/jackson-mapper-asl-1.9.13.jar')
+    implementation files('libs/json-simple-1.1.1.jar')
 }
