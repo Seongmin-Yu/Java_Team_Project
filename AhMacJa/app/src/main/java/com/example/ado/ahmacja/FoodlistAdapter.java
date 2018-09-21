@@ -8,6 +8,8 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+
 import java.util.ArrayList;
 
 public class FoodlistAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
@@ -16,6 +18,7 @@ public class FoodlistAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         TextView foodex;
         TextView likecnt;
         ImageView food;
+        View viewadd;
 
 
         MyViewHolder(View view){
@@ -24,6 +27,7 @@ public class FoodlistAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
             foodex = (TextView)view.findViewById(R.id.foodex_list);
             likecnt = (TextView)view.findViewById(R.id.likecnt_list);
             food = (ImageView)view.findViewById(R.id.foodimage_list);
+            viewadd = view;
         }
     }
 
@@ -47,7 +51,7 @@ public class FoodlistAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
 //        myViewHolder.ivPicture.setImageResource(foodInfoArrayList.get(position).drawableId);
 //        myViewHolder.tvPrice.setText(foodInfoArrayList.get(position).price);
         myViewHolder.food.setImageResource(R.drawable.sample);
-
+        Glide.with(myViewHolder.viewadd).load(FoodlistInfoArrayList.get(position).foodimage).into(myViewHolder.food);
         myViewHolder.likecnt.setText(FoodlistInfoArrayList.get(position).likecnt);
         myViewHolder.foodname.setText(FoodlistInfoArrayList.get(position).foodname);
         myViewHolder.foodex.setText(FoodlistInfoArrayList.get(position).ex);
