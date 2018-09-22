@@ -1,5 +1,6 @@
 package com.example.ado.ahmacja;
 
+import android.content.Intent;
 import android.graphics.Typeface;
 import android.media.Image;
 import android.support.v7.app.AppCompatActivity;
@@ -9,6 +10,7 @@ import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -39,6 +41,14 @@ public class FoodsListActivity extends AppCompatActivity implements View.OnClick
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_foods_list);
 
+        LinearLayout linearLayout = (LinearLayout) findViewById(R.id.searchbar);
+        linearLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+
         TextView sortname = (TextView)findViewById(R.id.sortbyname);
         TextView sortheart = (TextView)findViewById(R.id.sortbyheart);
         Typeface customFont = Typeface.createFromAsset(getAssets(),  "서울남산 장체M.ttf");
@@ -55,10 +65,8 @@ public class FoodsListActivity extends AppCompatActivity implements View.OnClick
         mLayoutManager = new LinearLayoutManager(this);
         mRecyclerView_hash.setLayoutManager(horizontalLayoutManagaer);
         mRecyclerView_food.setLayoutManager(mLayoutManager);
-        hashtagInfoArrayList= new ArrayList<>();
-        hashtagInfoArrayList.add(new HashtagInfo("#뜨겁다"));
-        hashtagInfoArrayList.add(new HashtagInfo("#꾸덕꾸덕하다"));
         foodlistInfoArrayList = new ArrayList<>();
+        hashtagInfoArrayList = (ArrayList<HashtagInfo>) getIntent().getSerializableExtra("hashtag");
         foods();
         hashtagAdapter = new HashtagAdapter(hashtagInfoArrayList);
         foodlistAdapter = new FoodlistAdapter(foodlistInfoArrayList);
@@ -117,8 +125,10 @@ public class FoodsListActivity extends AppCompatActivity implements View.OnClick
                 .baseUrl(URL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
+        String keyword = hashtagInfoArrayList.get(0).text;
+        Log.d("debugfor", keyword);
         FoodService foodService = retrofit.create(FoodService.class);
-        Call<FoodRepo> call = foodService.getFoods("쫄깃하다");
+        Call<FoodRepo> call = foodService.getFoods(keyword);
         call.enqueue(new Callback<FoodRepo>() {
             @Override
             public void onResponse(Call<FoodRepo> call, Response<FoodRepo> response) {

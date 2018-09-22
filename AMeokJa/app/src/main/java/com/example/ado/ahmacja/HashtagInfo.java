@@ -1,6 +1,8 @@
 package com.example.ado.ahmacja;
 
-public class HashtagInfo {
+import java.io.Serializable;
+
+public class HashtagInfo implements Serializable {
     public String text;
     public HashtagInfo(String text) {
         this.text = text;

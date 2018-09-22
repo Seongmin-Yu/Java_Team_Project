@@ -1,5 +1,6 @@
 package com.example.ado.ahmacja;
 
+import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -26,6 +27,13 @@ public class HomeFragment extends Fragment {
         TextView editTextHeme = (TextView)layout.findViewById(R.id.editText_home);
         Typeface customFont = Typeface.createFromAsset(getActivity().getAssets(),  "서울남산 장체M.ttf");
         editTextHeme.setTypeface(customFont);
+        editTextHeme.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), SerchActivity.class);
+                startActivity(intent);
+            }
+        });
         return layout;
     }
 }
