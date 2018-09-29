@@ -1,3 +1,7 @@
 <resources>
-    <string name="app_name">AMeokJa</string>
+    <string name="app_name">aa</string>
+    <string name="hhh">건의사항을 입력하세요</string>
+    <string name="title">정보 수정</string>
+    <string name="title2">음식 이름 자리</string>
+    <string name="context">설명이 여기에 이렇게 솰라솰라 써있는거인지 뭐인지자동으로 줄이 바뀌는 것이낙 이렇게 하면?</string>
 </resources>
