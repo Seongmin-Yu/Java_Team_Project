@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MapFragment">
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+    android:orientation="vertical"
+    tools:context=".MainActivity">
 
-    <!-- TODO: Update blank fragment layout -->
+
     <net.daum.mf.map.api.MapView
         android:layout_marginTop="50dp"
-        android:id="@+id/map_view_fragment"
+        android:id="@+id/map_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
@@ -29,7 +29,7 @@
             android:src="@drawable/backbtn_yellow" />
 
         <EditText
-            android:id="@+id/editText_home_fragment"
+            android:id="@+id/editText_map"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_marginLeft="20dp"
@@ -43,7 +43,7 @@
             android:textSize="20dp" />
 
         <ImageView
-            android:id="@+id/search_button_fragment"
+            android:id="@+id/search_button_map"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -55,7 +55,7 @@
     </LinearLayout>
 
     <ImageButton
-        android:id="@+id/current_location_button_fragment"
+        android:id="@+id/current_location_button"
         android:layout_width="40dp"
         android:layout_height="40dp"
         android:src="@drawable/current_location_button2"
@@ -66,5 +66,6 @@
         android:layout_marginTop="70dp"
 
         />
-    </RelativeLayout>
-</FrameLayout>
+
+
+</RelativeLayout>

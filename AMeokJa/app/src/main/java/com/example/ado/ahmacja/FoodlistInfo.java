@@ -1,6 +1,8 @@
 package com.example.ado.ahmacja;
 
-public class FoodlistInfo {
+import java.io.Serializable;
+
+public class FoodlistInfo implements Serializable {
     public String foodimage;
     public String foodname;
     public String ex;

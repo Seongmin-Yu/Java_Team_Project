@@ -72,6 +72,20 @@ public class FoodsListActivity extends AppCompatActivity implements View.OnClick
         foodlistAdapter = new FoodlistAdapter(foodlistInfoArrayList);
         mRecyclerView_hash.setAdapter(hashtagAdapter);
         mRecyclerView_food.setAdapter(foodlistAdapter);
+
+        mRecyclerView_food.addOnItemTouchListener(new RecyclerItemClickListener(this, mRecyclerView_food, new RecyclerItemClickListener.OnItemClickListener() {
+            @Override
+            public void onItemClick(View view, int position) {
+                Intent intent_detail = new Intent(FoodsListActivity.this, detailActivity.class);
+                intent_detail.putExtra("detail", foodlistInfoArrayList.get(position));
+                startActivity(intent_detail);
+            }
+
+            @Override
+            public void onLongItemClick(View view, int position) {
+
+            }
+        }));
     }
 
     @Override

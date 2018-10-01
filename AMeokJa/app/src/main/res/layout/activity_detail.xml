@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:id="@+id/report_top"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="#ffc100"
+        android:orientation="horizontal"
+        tools:ignore="MissingConstraints" />
+
+    <TextView
+        android:id="@+id/foodname_detail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="음식 이름"
+        android:textColor="#ffffff"
+        android:textSize="30sp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent" />
+
+    <ImageButton
+        android:id="@+id/backbtn_detail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="15dp"
+        android:background="@drawable/backbtn"
+        app:layout_constraintBottom_toBottomOf="@id/report_top"
+        app:layout_constraintLeft_toLeftOf="@id/report_top" />
+
+    <ImageView
+        android:id="@+id/foodimage_detail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:adjustViewBounds="true"
+        android:maxHeight="500dp"
+        android:maxWidth="300dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/report_top" />
+
+    <TextView
+        android:id="@+id/foodex_detail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:maxWidth="300dp"
+        android:text="설명"
+        android:textSize="17sp"
+        app:layout_constraintLeft_toLeftOf="@id/foodimage_detail"
+        app:layout_constraintTop_toBottomOf="@+id/foodimage_detail" />
+
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="15dp"
+        android:background="@drawable/refactor_btn"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent" />
+
+    <ImageButton
+        android:id="@+id/map_detail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="55dp"
+        android:layout_marginRight="55dp"
+        android:background="@drawable/map_back"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintRight_toRightOf="parent" />
+
+    <RelativeLayout
+        android:layout_width="113dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="55dp"
+        android:layout_marginLeft="55dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <ImageButton
+            android:id="@+id/likebtn_detail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/favorite" />
+
+        <TextView
+            android:id="@+id/likecnt_detail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="13dp"
+            android:gravity="center_vertical"
+            android:text="1"
+            android:textSize="20dp" />
+    </RelativeLayout>
+
+</android.support.constraint.ConstraintLayout>
