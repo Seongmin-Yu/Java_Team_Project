@@ -3,6 +3,7 @@ package com.example.ado.ahmacja;
 import java.io.Serializable;
 
 public class FoodlistInfo implements Serializable {
+    public String serial;
     public String foodimage;
     public String foodname;
     public String ex;
@@ -27,6 +28,8 @@ public class FoodlistInfo implements Serializable {
         this.likecnt = likecnt;
     }
 
+    public void setSerialatinfo(String serial) { this.serial = serial; }
+
     public String getFoodname() {
         return foodname;
     }
@@ -35,7 +38,9 @@ public class FoodlistInfo implements Serializable {
         return likecnt;
     }
 
-    public String getEx() {return ex;}
+    public String getEx() { return ex; }
 
-    public String getFoodimage() {return foodimage; }
+    public String getFoodimage() { return foodimage; }
+
+    public String getSerialatinfo() { return serial; }
 }

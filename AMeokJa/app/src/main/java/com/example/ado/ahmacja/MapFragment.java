@@ -1,6 +1,7 @@
 package com.example.ado.ahmacja;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
@@ -223,7 +224,10 @@ public class MapFragment extends Fragment implements MapView.MapViewEventListene
 
     @Override
     public void onCalloutBalloonOfPOIItemTouched(MapView mapView, MapPOIItem mapPOIItem, MapPOIItem.CalloutBalloonButtonType calloutBalloonButtonType) {
-
+        Item itemtosearch = mTagItemMap.get(mapPOIItem.getTag());
+        Intent intent = new Intent(getActivity(), InternetActivity.class);
+        intent.putExtra("internet", itemtosearch.place_name);
+        startActivity(intent);
     }
 
     @Override

@@ -1,10 +1,12 @@
 package com.example.ado.ahmacja;
 
+import android.content.Context;
 import android.graphics.Typeface;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentStatePagerAdapter;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
@@ -26,15 +28,17 @@ public class MainActivity extends AppCompatActivity {
 
     BottomNavigationView bottomNavigationView;
     ViewPager vp;
+    pagerAdapter vpAapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        getHashKey();
+        //getHashKey();
         setContentView(R.layout.activity_main);
 
         vp =(ViewPager)findViewById(R.id.vp);
-        vp.setAdapter(new pagerAdapter(getSupportFragmentManager()));
+        vpAapter = new pagerAdapter(getSupportFragmentManager());
+        vp.setAdapter(vpAapter);
         vp.setCurrentItem(1);
         bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottom_navigation);
         bottomNavigationView.getMenu().getItem(1).setChecked(true);
@@ -52,11 +56,20 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onPageSelected(int position)
             {
+                refresh();
                 if (prevBottomNavigation != null) {
                     prevBottomNavigation.setChecked(false);
                 }
                 prevBottomNavigation = bottomNavigationView.getMenu().getItem(position);
                 prevBottomNavigation.setChecked(true);
+//                if(position == 0) {
+//                    HistoryFragment frg = null;
+//                    frg = (HistoryFragment) getSupportFragmentManager().findFragmentByTag("history");
+//                    final FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+//                    ft.detach(frg);
+//                    ft.attach(frg);
+//                    ft.commit();
+//                }
             }
 
             @Override
@@ -100,7 +113,9 @@ public class MainActivity extends AppCompatActivity {
             switch(position)
             {
                 case 0:
-                    return new HistoryFragment();
+                    HistoryFragment historyFragment = new HistoryFragment();
+                    historyFragment.setMyTag("history");
+                    return historyFragment;
                 case 1:
                     return new HomeFragment();
                 case 2:
@@ -113,6 +128,14 @@ public class MainActivity extends AppCompatActivity {
         public int getCount()
         {
             return 3;
+        }
+
+        @Override
+
+        public int getItemPosition(Object object) {
+
+            return POSITION_NONE;
+
         }
     }
 
@@ -135,5 +158,10 @@ public class MainActivity extends AppCompatActivity {
                 Log.e("KeyHash", "Unable to get MessageDigest. signature=" + signature, e);
             }
         }
+    }
+
+    public void refresh()
+    {
+        vpAapter.notifyDataSetChanged();
     }
 }

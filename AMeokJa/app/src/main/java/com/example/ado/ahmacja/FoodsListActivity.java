@@ -14,6 +14,8 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -34,6 +36,7 @@ public class FoodsListActivity extends AppCompatActivity implements View.OnClick
     ArrayList<FoodlistInfo> foodlistInfoArrayList;
     FoodlistAdapter foodlistAdapter;
     HashtagAdapter hashtagAdapter;
+    FoodlistInfo selectedfood;
     static final String URL = "http://35.200.68.66:2207/";
 
     @Override
@@ -76,9 +79,10 @@ public class FoodsListActivity extends AppCompatActivity implements View.OnClick
         mRecyclerView_food.addOnItemTouchListener(new RecyclerItemClickListener(this, mRecyclerView_food, new RecyclerItemClickListener.OnItemClickListener() {
             @Override
             public void onItemClick(View view, int position) {
-                Intent intent_detail = new Intent(FoodsListActivity.this, detailActivity.class);
-                intent_detail.putExtra("detail", foodlistInfoArrayList.get(position));
-                startActivity(intent_detail);
+                selectedfood = foodlistInfoArrayList.get(position);
+                Intent intent = new Intent(FoodsListActivity.this, detailActivity.class);
+                intent.putExtra("detail", selectedfood);
+                startActivity(intent);
             }
 
             @Override
@@ -109,16 +113,6 @@ public class FoodsListActivity extends AppCompatActivity implements View.OnClick
                 Collections.sort(foodlistInfoArrayList, new CompareLikecntDesc());
                 foodlistAdapter.notifyDataSetChanged();
                 break;
-            case R.id.likebtn_list:
-                if((Integer) v.getTag() == 1) {
-                    ImageView icon = v.findViewById(R.id.likeicon_list);
-                    icon.setImageResource(R.drawable.like_noclick);
-                    v.setTag(0);
-                } else {
-                    ImageView icon = v.findViewById(R.id.likeicon_list);
-                    icon.setImageResource(R.drawable.like_onclick);
-                    v.setTag(1);
-                }
         }
     }
     static class CompareLikecntDesc implements Comparator<FoodlistInfo> {
@@ -140,7 +134,6 @@ public class FoodsListActivity extends AppCompatActivity implements View.OnClick
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         String keyword = hashtagInfoArrayList.get(0).text;
-        Log.d("debugfor", keyword);
         FoodService foodService = retrofit.create(FoodService.class);
         Call<FoodRepo> call = foodService.getFoods(keyword);
         call.enqueue(new Callback<FoodRepo>() {
@@ -149,6 +142,7 @@ public class FoodsListActivity extends AppCompatActivity implements View.OnClick
                 FoodRepo repo = response.body();
                 for(int i = 0; i < repo.getFoods().size();i++) {
                 FoodlistInfo food = new FoodlistInfo();
+                food.setSerialatinfo(repo.getFoods().get(i).getSerial());
                 food.setFoodname(repo.getFoods().get(i).getFoodname());
                 food.setEx(repo.getFoods().get(i).getContext());
                 food.setLikecnt(repo.getFoods().get(i).getLike());

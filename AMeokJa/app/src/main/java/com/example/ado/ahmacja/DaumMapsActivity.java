@@ -2,6 +2,7 @@ package com.example.ado.ahmacja;
 
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
@@ -38,8 +39,9 @@ public class DaumMapsActivity extends FragmentActivity
     MapView mapView;
     String API_KEY = "bbc70593defebc949948303a45e2b7ea";
     ImageView mButtonSearch;
-    EditText mEditTextQuery;
+    TextView mEditTextQuery;
     ImageButton mButtonCurrent;
+    ImageView mButtonBack;
     private HashMap<Integer, Item> mTagItemMap = new HashMap<>();
 
     @Override
@@ -53,11 +55,19 @@ public class DaumMapsActivity extends FragmentActivity
         mapView.setPOIItemEventListener(this);
         mapView.setCalloutBalloonAdapter(new CustomCalloutBalloonAdapter());
 
-        mEditTextQuery = (EditText) findViewById(R.id.editText_map);
+        mEditTextQuery = (TextView) findViewById(R.id.editText_map);
         mEditTextQuery.setOnKeyListener(new EditMessageOnKeyListener());
-        mButtonSearch = (ImageView) findViewById(R.id.search_button_map);
         mButtonCurrent = findViewById(R.id.current_location_button);
+        mButtonBack = findViewById(R.id.backbtn_map_saerch);
+        mButtonBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
 
+        mEditTextQuery.setText(getIntent().getStringExtra("foodname"));
+        onSearchButton();
 
 
 
@@ -138,43 +148,43 @@ public class DaumMapsActivity extends FragmentActivity
             }
         });
 
-        mButtonSearch.setOnClickListener(new View.OnClickListener()
-        {
-            @Override
-            public void onClick(View v) {
-                onSearchButton();
-
-            /*
-        String query = mEditTextQuery.getText().toString();
-        if (query == null || query.length() == 0) {
-            Toast.makeText(getBaseContext(), "검색어를 입력하세요.", Toast.LENGTH_SHORT).show();
-            return;
-        }
-        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
-        MapPoint.GeoCoordinate geoCoordinate = mapView.getMapCenterPoint().getMapPointGeoCoord();
-        double latitude = geoCoordinate.latitude; // 위도
-        double longitude = geoCoordinate.longitude; // 경도
-        int radius = 10000;
-        int page = 1;
-
-        Searcher searcher = new Searcher();
-        searcher.searchKeyword(getApplicationContext(), query, latitude, longitude, radius, page, API_KEY, new OnFinishSearchListener() {
-            @Override
-            public void onSuccess(List<Item> itemList) {
-                mapView.removeAllPOIItems();
-                showResult(itemList);
-            }
-
-            @Override
-            public void onFail() {
-                //Toast.makeText(getBaseContext(), "API_KEY 제한 트래픽 초과!", Toast.LENGTH_SHORT).show();
-            }
-        });*/
-
-
-            }
-
-        });
+//        mButtonSearch.setOnClickListener(new View.OnClickListener()
+//        {
+//            @Override
+//            public void onClick(View v) {
+//                onSearchButton();
+//
+//            /*
+//        String query = mEditTextQuery.getText().toString();
+//        if (query == null || query.length() == 0) {
+//            Toast.makeText(getBaseContext(), "검색어를 입력하세요.", Toast.LENGTH_SHORT).show();
+//            return;
+//        }
+//        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
+//        MapPoint.GeoCoordinate geoCoordinate = mapView.getMapCenterPoint().getMapPointGeoCoord();
+//        double latitude = geoCoordinate.latitude; // 위도
+//        double longitude = geoCoordinate.longitude; // 경도
+//        int radius = 10000;
+//        int page = 1;
+//
+//        Searcher searcher = new Searcher();
+//        searcher.searchKeyword(getApplicationContext(), query, latitude, longitude, radius, page, API_KEY, new OnFinishSearchListener() {
+//            @Override
+//            public void onSuccess(List<Item> itemList) {
+//                mapView.removeAllPOIItems();
+//                showResult(itemList);
+//            }
+//
+//            @Override
+//            public void onFail() {
+//                //Toast.makeText(getBaseContext(), "API_KEY 제한 트래픽 초과!", Toast.LENGTH_SHORT).show();
+//            }
+//        });*/
+//
+//
+//            }
+//
+//        });
 
         mButtonCurrent.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -321,7 +331,10 @@ public class DaumMapsActivity extends FragmentActivity
 
     @Override
     public void onCalloutBalloonOfPOIItemTouched(MapView mapView, MapPOIItem mapPOIItem, MapPOIItem.CalloutBalloonButtonType calloutBalloonButtonType) {
-
+        Item itemtosearch = mTagItemMap.get(mapPOIItem.getTag());
+        Intent intent = new Intent(DaumMapsActivity.this, InternetActivity.class);
+        intent.putExtra("internet", itemtosearch.place_name);
+        startActivity(intent);
     }
 
     @Override

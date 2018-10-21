@@ -22,13 +22,14 @@
         android:background="@drawable/radiousxml">
 
         <ImageView
+            android:id="@+id/backbtn_map_saerch"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginLeft="5dp"
             android:src="@drawable/backbtn_yellow" />
 
-        <EditText
+        <TextView
             android:id="@+id/editText_map"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
@@ -39,19 +40,7 @@
             android:imeOptions="actionSearch"
             android:background="@android:color/transparent"
             android:gravity="center_vertical"
-            android:hint="Search in your city"
             android:textSize="20dp" />
-
-        <ImageView
-            android:id="@+id/search_button_map"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginRight="10dp"
-            android:baselineAligned="false"
-            android:src="@drawable/searchicon" />
-
-
     </LinearLayout>
 
     <ImageButton

@@ -21,12 +21,13 @@
         android:layout_margin="10dp"
         android:background="@drawable/radiousxml">
 
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginLeft="5dp"
-            android:src="@drawable/backbtn_yellow" />
+        <!--<ImageView-->
+            <!--android:id="@+id/backbtn_map_fragment"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_gravity="center"-->
+            <!--android:layout_marginLeft="5dp"-->
+            <!--android:src="@drawable/backbtn_yellow" />-->
 
         <EditText
             android:id="@+id/editText_home_fragment"
