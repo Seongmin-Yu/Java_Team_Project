@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MapFragment">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    <!-- TODO: Update blank fragment layout -->
+    <net.daum.mf.map.api.MapView
+        android:layout_marginTop="50dp"
+        android:id="@+id/map_view_fragment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_margin="10dp"
+        android:background="@drawable/radiousxml">
+
+        <!--<ImageView-->
+            <!--android:id="@+id/backbtn_map_fragment"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_gravity="center"-->
+            <!--android:layout_marginLeft="5dp"-->
+            <!--android:src="@drawable/backbtn_yellow" />-->
+
+        <EditText
+            android:id="@+id/editText_home_fragment"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="20dp"
+            android:layout_weight="1"
+            android:maxLines="1"
+            android:inputType="text"
+            android:imeOptions="actionSearch"
+            android:background="@android:color/transparent"
+            android:gravity="center_vertical"
+            android:hint="Search in your city"
+            android:textSize="20dp" />
+
+        <ImageView
+            android:id="@+id/search_button_fragment"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginRight="10dp"
+            android:baselineAligned="false"
+            android:src="@drawable/searchicon" />
+
+
+    </LinearLayout>
+
+    <ImageButton
+        android:id="@+id/current_location_button_fragment"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:src="@drawable/current_location_button2"
+        android:background="@drawable/button_currentlocation" android:scaleType="fitXY"
+        android:layout_marginRight="3dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="70dp"
+
+        />
+    </RelativeLayout>
+</FrameLayout>

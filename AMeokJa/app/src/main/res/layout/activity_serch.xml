@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:background="@color/orange"
+        android:padding="7dp">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:background="@drawable/radiousxml"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp">
+            <EditText
+                android:id="@+id/editText_search"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:textSize="20dp"
+                android:gravity="center_vertical"
+                android:hint="# 키워드로 검색"
+                android:singleLine = "true"
+                android:lines = "1"
+                android:background="@null"
+                />
+            <ImageView
+                android:id="@+id/search_icon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/searchicon"
+                android:layout_gravity="center_vertical"/>
+        </LinearLayout>
+    </LinearLayout>
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recycler_hashtag_search"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#FFF3D2"></android.support.v7.widget.RecyclerView>
+</LinearLayout>
